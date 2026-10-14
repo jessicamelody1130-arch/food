@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>今天午餐吃什麼？轉盤</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>🍱 今天午餐吃什麼？</h1>
+    <p>選擇困難？交給轉盤決定吧～</p>
+    <button class="sound-btn" id="soundBtn" type="button">🔊 音效：開</button>
+  </header>
+
+  <main class="layout">
+    <section class="card wheel-card">
+      <canvas id="wheel" width="800" height="820" aria-label="午餐轉盤"></canvas>
+      <button class="spin-btn" id="spinBtn" type="button">開始轉！</button>
+      <p class="hint" id="hint"></p>
+    </section>
+
+    <section class="card opts-card">
+      <h2>📝 選項管理 <small id="optCount"></small></h2>
+      <fieldset id="lockZone">
+        <form class="add-form" id="addForm" autocomplete="off">
+          <input type="text" id="newName" maxlength="10" placeholder="輸入餐點或店名（最多 10 字）">
+          <button class="btn" type="submit">＋ 新增</button>
+        </form>
+        <div class="opt-tools">
+          <label><input type="checkbox" id="recentChk"> 🕒 最近 3 天吃過的，機率降低</label>
+        </div>
+        <div class="opt-list" id="optList"></div>
+        <button class="reset-link" id="resetBtn" type="button">恢復範例選項</button>
+      </fieldset>
+    </section>
+
+    <section class="card stats-card">
+      <h2>📊 抽中次數統計 <small>最近 20 次</small></h2>
+      <div id="stats"></div>
+    </section>
+
+    <section class="card hist-card">
+      <h2>📜 歷史紀錄 <button class="btn ghost small" id="clearBtn" type="button">清除紀錄</button></h2>
+      <ul class="hist-list" id="histList"></ul>
+    </section>
+  </main>
+
+  <footer>資料只存在你的瀏覽器裡，不會上傳到任何地方 🧡</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultName">
+    <div class="emoji">🎉</div>
+    <p>今天就吃</p>
+    <h3 id="resultName"></h3>
+    <div class="modal-btns">
+      <button class="btn" id="okBtn" type="button">好，就吃這個！</button>
+      <button class="btn ghost" id="againBtn" type="button">再轉一次</button>
+    </div>
+  </div>
+</div>
+
+<div id="confetti"></div>
+<div class="toast" id="toast" role="status"></div>
+</body>
+</html>
